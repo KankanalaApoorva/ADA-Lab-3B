@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<time.h>
+void delay()
+{
+    int u;
+    for(u=0;u<8000;u++);
+}
+
+void BinarySearch(int arr[],int num,int first,int last){
+   
+   int mid;
+
+   if(first > last){
+       
+        printf("Cannot Find The Number");
+        
+   } else {
+       
+      
+      mid = (first + last)/2;
+    
+      
+      if(arr[mid]==num){
+          
+            printf("Element Is At The Index: %d ",mid+1);
+            exit(0);
+            
+        }else if(arr[mid] > num){
+            
+            BinarySearch(arr, num, first, mid-1);
+        
+        }else{
+            
+            BinarySearch(arr, num, mid+1, last);
+        }   
+    }  
+}
+
+
+void main(){
+
+   int arr[50],beg,mid,end,i,n,num;
+   time_t start,endt;
+    start=time(NULL);
+    delay();
+   printf("Enter The Size Of The Given Array: ");
+   scanf("%d",&n);
+
+   printf("Enter The Values In Sorted Sequence \n");
+
+   for(i=0;i<n;i++)
+   {   
+       scanf("%d",&arr[i]);
+   }   
+
+
+   beg=0;
+   end=n-1;
+
+   printf("Enter The Value To Search Using Binary Search: ");
+   scanf("%d",&num);
+
+   BinarySearch(arr,num,beg,end);
+   endt=time(NULL);
+   
+   printf("\nTime is %f",difftime(endt,start));
+
+}
